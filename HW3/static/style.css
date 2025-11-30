@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;  
+    align-items: center;     
+    height: 100vh;            
+    margin: 0;                
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+label {
+    width: 120px;
+    font-weight: 600;
+}
+
+input, select {
+    flex: 1;
+    padding: 5px;
+}
+
+.radio {
+    display: inline-flex;
+    gap: 5px;
+}
+
+.button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back {
+    text-align: center;
+}
+
+
+input, select {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;    
+    background-color: transparent;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <form action="/output" method="POST">
+            <div class="form">
+                <label>Last Name</label>
+                <input type="text" name="lastname" required>
+            </div>
+
+            <div class="form">
+                <label>First Name</label>
+                <input type="text" name="firstname" required>
+            </div>
+
+            <div class="form">
+                <label>Sex</label>
+                <span class="radio">
+                    <label><input type="radio" name="sex" value="Male" required> Male</label>
+                    <label><input type="radio" name="sex" value="Female"> Female</label>
+                </span>
+            </div>
+
+            <div class="form">
+                <label>Institution</label>
+                <select name="institution" required>
+                    <option value="PSU">PSU</option>
+                    <option value="UCU">UCU</option>
+                    <option value="PNU">PNU</option>
+                </select>
+            </div>
+
+            <div class="form">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="button">
+                <button type="submit">REGISTER</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
