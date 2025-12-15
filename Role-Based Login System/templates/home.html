@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        .flashes li.success { color: green; }
+        .flashes li.error { color: red; }
+        .flashes li.info { color: blue; }
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 8px; }
+    </style>
+</head>
+<body>
+
+    <h2>Home Page</h2> 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    <h3>Welcome <span style="color: blue;">{{ session['username'] }}</span>! <a href="{{ url_for('logout') }}">Logout</a></h3>
+    
+    <hr>
+
+    {% if session['role'] == 'ordinary' %}
+        <h4>Your Account Details:</h4>
+        {% if user_details %}
+            <p><strong>Full Name:</strong> {{ user_details.full_name }} </p>
+            <p><strong>Sex:</strong> 
+                <input type="radio" {% if user_details.sex == 'Male' %}checked{% endif %} disabled> Male
+                <input type="radio" {% if user_details.sex == 'Female' %}checked{% endif %} disabled> Female 
+            </p>
+            <p><strong>DOB:</strong> <input type="text" value="{{ user_details.dob }}" disabled></p>
+            <p><strong>Username:</strong> <input type="text" value="{{ user_details.username }}" disabled></p>
+            <p><strong>Password:</strong> <input type="password" value="********" disabled></p>
+        {% endif %}
+        
+    {% elif session['role'] == 'admin' %}
+        <h4>List of users:</h4>
+        {% if list_of_users %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Full Name</th>
+                        <th>Sex</th>
+                        <th>DOB</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in list_of_users %}
+                    <tr>
+                        <td>{{ user['acctno'] }}</td>
+                        <td>{{ user['Full Name'] }}</td>
+                        <td>{{ user['sex'] }}</td>
+                        <td>{{ user['dob'] }}</td>
+                        <td>{{ user['username'] }}</td>
+                        <td>{{ user['password'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No other user accounts found.</p>
+        {% endif %}
+
+    {% endif %}
+    
+</body>
+</html>
